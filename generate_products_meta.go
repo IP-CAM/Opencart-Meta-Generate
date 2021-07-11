@@ -13,7 +13,7 @@ type Product struct {
 }
 
 func dbInit() *sql.DB {
-        db, err := sql.Open("mysql", "opencart_db:VSCYAGwbXShpbL9g@/protection_key_db")
+        db, err := sql.Open("mysql", "login:password@/name_of_db")
         if err != nil {
                 panic(err)
         }
@@ -47,7 +47,7 @@ func getProducts(db *sql.DB) *[]Product {
 
 func generateMeta(db *sql.DB, products *[]Product) {
         for _, product := range *products {
-                _, err := db.Exec(fmt.Sprintf("UPDATE oc_product_description SET meta_title = \"Купити %s на сайті protection-key.com.ua\", meta_description = \"%s. Широкий асортимент. Швидка доставка. Низькі ціни\" WHERE product_id = %d", product.Name, product.Category, product.ID))
+                _, err := db.Exec(fmt.Sprintf("UPDATE oc_product_description SET meta_title = \"Buy %s on site ...\", meta_description = \"%s. Fast delivery. Low price\" WHERE product_id = %d", product.Name, product.Category, product.ID))
                 if err != nil {
                     panic(err.Error())
                 }
